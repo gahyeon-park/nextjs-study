@@ -1,11 +1,18 @@
 import Link from "next/link";
 import { getProducts } from "@/service/products";
+import styles from "./page.module.css";
 
-export const revalidate = 3;
+// export const revalidate = 3;
 
 export default async function Products() {
   // 서버 파일(데이터베이스)에 있는 제품의 리스트를 읽어와서 그걸 보여줌.
   const products = await getProducts();
+  const res = await fetch(`https://meowfacts.herokuapp.com`, {
+    next: { revalidate: 3 },
+    // cache: "no-store"
+  });
+  const data = await res.json();
+  const factText = data.data[0];
 
   return (
     <>
@@ -15,6 +22,7 @@ export default async function Products() {
           <li key={index}><Link href={`/products/${id}`}>{name}</Link></li>
         )}
       </ul>
+      <article className={styles.article}>{factText}</article>
     </>
   )
 }
