@@ -8,8 +8,8 @@ type Props = {
 
 export default function Pants({ params }: Props) {
   console.log(params);
-  
-  return <div>{params.slug} page</div>
+
+  return <div>{params.slug} 제품소개 page</div>
 }
 
 export function generateStaticParams() {
