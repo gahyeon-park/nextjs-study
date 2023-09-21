@@ -1,5 +1,5 @@
 import NotFound from "@/app/not-found";
-import { getProduct, getProducts } from "@/service/products";
+import { getProduct, getProducts, } from "@/service/products";
 
 type Props = {
   params: {
@@ -14,18 +14,20 @@ export const generateMetadata = ({ params }: Props) => {
   }
 }
 
-export default function Pants({ params: { slug } }: Props) {
-  const product = getProduct(slug);
+export default async function Product({ params: { slug } }: Props) {
+  console.log(slug);
+  const product = await getProduct(slug);
 
   if (!product) {
     NotFound();
   }
-  return <div>{product} 제품소개 page</div>
+
+  return <h2>{product?.name} 제품소개 page</h2>
 }
 
-export function generateStaticParams() {
-  const products = getProducts();
+export async function generateStaticParams() {
+  const products = await getProducts();
   return products.map(product => ({
-    slug: product
+    slug: product.id
   }))
 }
