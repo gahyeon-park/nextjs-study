@@ -1,6 +1,8 @@
 import NotFound from "@/app/not-found";
 import { getProduct, getProducts, } from "@/service/products";
 
+export const revalidate = 3;
+
 type Props = {
   params: {
     slug: string
@@ -15,7 +17,7 @@ export const generateMetadata = ({ params }: Props) => {
 }
 
 export default async function Product({ params: { slug } }: Props) {
-  console.log(slug);
+  // console.log(slug);
   const product = await getProduct(slug);
 
   if (!product) {
