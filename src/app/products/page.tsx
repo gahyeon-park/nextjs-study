@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { getProducts } from "@/service/products";
-import styles from "./page.module.css";
+import MeowArticle from "@/components/MeowAticle";
 
 // export const revalidate = 3;
 
@@ -22,7 +22,7 @@ export default async function Products() {
           <li key={index}><Link href={`/products/${id}`}>{name}</Link></li>
         )}
       </ul>
-      <article className={styles.article}>{factText}</article>
+      <MeowArticle />
     </>
   )
 }
