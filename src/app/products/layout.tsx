@@ -1,5 +1,11 @@
 import styles from './layout.module.css';
 import Link from 'next/link';
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: '전체 제품 확인 | 멋진 제품 사이트',
+  description: '멋진 제품을 판매하는 곳입니다.',
+}
 
 export default function ProductsLayout({ children }: {
   children: React.ReactNode
