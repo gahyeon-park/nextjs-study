@@ -1,4 +1,5 @@
-import type { Metadata } from 'next'
+import NotFound from "@/app/not-found";
+import { getProduct, getProducts } from "@/service/products";
 
 type Props = {
   params: {
@@ -13,14 +14,17 @@ export const generateMetadata = ({ params }: Props) => {
   }
 }
 
-export default function Pants({ params }: Props) {
-  console.log(params);
+export default function Pants({ params: { slug } }: Props) {
+  const product = getProduct(slug);
 
-  return <div>{params.slug} 제품소개 page</div>
+  if (!product) {
+    NotFound();
+  }
+  return <div>{product} 제품소개 page</div>
 }
 
 export function generateStaticParams() {
-  const products = ['pants', 'skirt'];
+  const products = getProducts();
   return products.map(product => ({
     slug: product
   }))
