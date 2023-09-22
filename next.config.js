@@ -21,6 +21,18 @@ const nextConfig = {
         permanent: false
       }
     ]
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/ellie",
+        destination: "/about/me/ellie"
+      },
+      {
+        source: "/items/:slug",
+        destination: "/products/:slug"
+      }
+    ]
   }
 }
 
