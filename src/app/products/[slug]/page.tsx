@@ -1,6 +1,8 @@
 import NotFound from "@/app/not-found";
+import GoProducts from "@/components/GoProducts";
 import { getProduct, getProducts, } from "@/service/products";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 export const revalidate = 3;
 
@@ -22,12 +24,14 @@ export default async function Product({ params: { slug } }: Props) {
   const product = await getProduct(slug);
 
   if (!product) {
-    NotFound();
+    redirect("/products");
+    // NotFound();
   }
 
   return <>
     <h2>{product?.name} 제품소개 page</h2>
     <Image src={`/images/${product?.img}`} width={400} height={600} alt={`${product?.name} image`} />
+    <GoProducts />
   </>
 }
 
