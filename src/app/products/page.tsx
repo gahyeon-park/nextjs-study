@@ -6,13 +6,8 @@ import MeowArticle from "@/components/MeowAticle";
 
 export default async function Products() {
   // 서버 파일(데이터베이스)에 있는 제품의 리스트를 읽어와서 그걸 보여줌.
+  for (let i = 0; i < 10000000; i++) { }
   const products = await getProducts();
-  const res = await fetch(`https://meowfacts.herokuapp.com`, {
-    next: { revalidate: 3 },
-    // cache: "no-store"
-  });
-  const data = await res.json();
-  const factText = data.data[0];
 
   return (
     <>
