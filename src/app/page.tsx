@@ -1,6 +1,7 @@
 import styles from './page.module.css'
 import os from 'os'; // 노드 API 중 하나인 os (노드가 실행되는 운영체제에 대한 정보를 갖고있는 모듈)
 import Counter from '@/components/Counter';
+import Image from 'next/image';
 
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
     <main className={styles.main}>
       <h1>Home</h1>
       <Counter />
+      <Image src="https://images.unsplash.com/photo-1441986300917-64674bd600d8" width={400} height={400} alt="#" />
     </main>
   )
 }
